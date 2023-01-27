@@ -2,10 +2,13 @@ from django.test import TestCase
 
 # Create your tests here.
 
-def setUp(self):
-    self.response = self.client.get('/')
 
 class HomeTest(TestCase):
+
+
+    def setUp(self):
+        self.response = self.client.get('/')
+
     def test_get(self):
         """GET / must return status code 200"""
 
