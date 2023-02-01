@@ -1,29 +1,39 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.shortcuts import render
 from django.core import mail
 from django.template.loader import render_to_string
 from eventex.subscriptions.forms import SubscriptionForm
 
-
-def subscribe(request):    
+def subscribe(request):
     if request.method == 'POST':
-        form = SubscriptionForm(request.POST)
-        if form.is_valid():
-            form.full_clean()
-
-            body = render_to_string('subscriptions/subscription_email.txt', form.cleaned_data)
-
-            mail.send_mail('Confirmação de inscrição',
-                            body,
-                            'breno.dias@kmee.com.br',
-                            
-                            ['breno.dias@kmee.com.br', form.cleaned_data['email']])
-            messages.success(request, 'Inscrição realizada com sucesso!')
-
-            return HttpResponseRedirect('/inscricao/')
-        else:
-            return render(request,'subscriptions/subscription_form.html', {'form': form})
+        return create(request)
     else:
-        context = {'form': SubscriptionForm()}
-        return render(request, 'subscriptions/subscription_form.html', context)
+        return new(request)
+
+
+def create(request):    
+        form = SubscriptionForm(request.POST)
+        if not form.is_valid():
+            return render(request,'subscriptions/subscription_form.html', {'form': form})
+         
+        form.full_clean()
+
+        # Send Email
+        _send_mail('Confirmação de inscrição',settings.DEFAULT_FROM_EMAIL,
+                    form.cleaned_data['email'], 'subscriptions/subscription_email.txt', form.cleaned_data)
+       
+        # Success
+        messages.success(request, 'Inscrição realizada com sucesso!')
+
+        return HttpResponseRedirect('/inscricao/')
+       
+        
+def new(request):
+    context = {'form': SubscriptionForm()}
+    return render(request, 'subscriptions/subscription_form.html', context)
+
+def _send_mail(subject, from_, to, template_name, context):
+    body = render_to_string(template_name, context)
+    mail.send_mail(subject, body,from_, [from_, to])
