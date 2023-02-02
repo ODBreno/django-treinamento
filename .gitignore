@@ -5,3 +5,4 @@
 *pyc
 __pycache
 staticfiles
+.ipynb_checkpoints/

@@ -7,4 +7,4 @@ EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
 EMAIL_PORT=587
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER=apikey
-EMAIL_HOST_PASSWORD=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
+EMAIL_HOST_PASSWORD=senhadoserviçodeenviaremail
