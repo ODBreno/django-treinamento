@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.http import HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.contrib import messages
 from django.shortcuts import render
 from django.core import mail
@@ -21,20 +21,26 @@ def create(request):
          
         form.full_clean()
 
+        subscription = Subscription.objects.create(**form.cleaned_data)
         # Send Email
         _send_mail('Confirmação de inscrição',settings.DEFAULT_FROM_EMAIL,
-                    form.cleaned_data['email'], 'subscriptions/subscription_email.txt', form.cleaned_data)
-       
-        Subscription.objects.create(**form.cleaned_data)
-        # Success
-        messages.success(request, 'Inscrição realizada com sucesso!')
+                    subscription.email, 'subscriptions/subscription_email.txt', {'subscription':subscription})
 
-        return HttpResponseRedirect('/inscricao/')
+
+        return HttpResponseRedirect('/inscricao/{}/'.format(subscription.pk))
        
-        
+
+def detail(request, pk):
+    try:
+        subscription = Subscription.objects.get(pk=pk)
+    except Subscription.DoesNotExist:
+        raise Http404
+    return render(request, 'subscriptions/subscription_detail.html', {'subscription': subscription})
+    
 def new(request):
     context = {'form': SubscriptionForm()}
     return render(request, 'subscriptions/subscription_form.html', context)
+
 
 def _send_mail(subject, from_, to, template_name, context):
     body = render_to_string(template_name, context)
