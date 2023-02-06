@@ -20,7 +20,7 @@ def create(request):
          
         form.full_clean()
 
-        subscription = Subscription.objects.create(**form.cleaned_data)
+        subscription = form.save()
         # Send Email
         _send_mail('Confirmação de inscrição',settings.DEFAULT_FROM_EMAIL,
                     subscription.email, 'subscriptions/subscription_email.txt', {'subscription':subscription})
