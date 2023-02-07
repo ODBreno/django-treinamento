@@ -364,4 +364,9 @@ section header h2 {
     background-color: #dff0d8;
     border-color: #d0e9c6;
 }
+
+.speakers img.photo{
+    float: left;
+    padding-right: 15 px;
+}
 /* Fim Customização */
