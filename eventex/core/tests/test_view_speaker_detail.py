@@ -9,7 +9,7 @@ class SpeakerDetailGet(TestCase):
         Speaker.objects.create(
             name='Grace Hopper',
             slug='grace-hopper',
-            photo='http://hbn.link/hopper-pic',
+            photo='https://minasyenergia.upm.es/images/thumbnails/images/Espacio_Igualdad/Exposicion_mujeres_ciencias/gracehopp-fill-172x226.jpg',
             website='http://hbn.link/hopper-site',
             description='Programadora e almirante.'
         )
@@ -25,7 +25,7 @@ class SpeakerDetailGet(TestCase):
         contents = [
             'Grace Hopper',
             'Programadora e almirante.',
-            'http://hbn.link/hopper-pic',
+            'https://minasyenergia.upm.es/images/thumbnails/images/Espacio_Igualdad/Exposicion_mujeres_ciencias/gracehopp-fill-172x226.jpg',
             'http://hbn.link/hopper-site',
         ]
 

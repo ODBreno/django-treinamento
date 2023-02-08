@@ -7,7 +7,7 @@ class SpeakerModelTest(TestCase):
         self.speaker = Speaker.objects.create(
             name='Grace Hopper',
             slug='grace-hopper',
-            photo='http://hbn.link/hopper-pic',
+            photo='https://minasyenergia.upm.es/images/thumbnails/images/Espacio_Igualdad/Exposicion_mujeres_ciencias/gracehopp-fill-172x226.jpg',
             website='http://hbn.link/hopper-site',
             description='Programadora e almirante.'
         )

@@ -25,10 +25,10 @@ class HomeTest(TestCase):
         contents = [
             'href="{}"'.format(r('speaker_detail', slug='grace-hopper')),
             'Grace Hopper',
-            'http://hbn.link/hopper-pic',
+            'https://minasyenergia.upm.es/images/thumbnails/images/Espacio_Igualdad/Exposicion_mujeres_ciencias/gracehopp-fill-172x226.jpg',
             'href="{}"'.format(r('speaker_detail', slug='alan-turing')),
             'Alan Turing',
-            'http://hbn.link/turing-pic',
+            'https://cdn.britannica.com/81/191581-050-8C0A8CD3/Alan-Turing.jpg',
         ]
         for expected in contents:
             with self.subTest():
