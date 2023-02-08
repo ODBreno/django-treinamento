@@ -370,13 +370,13 @@ section header h2 {
 }
 
 .speakers img {
-    width: 200 px;
+    width: 200px;
     border-radius: 100%;
 }
 
 .speakers img.photo{
     float: left;
-    padding-right: 15 px;
+    padding-right: 15px;
 }
 
 .talks h3 {

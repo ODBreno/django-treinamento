@@ -19,7 +19,7 @@ class SpeakerModelTest(TestCase):
         field = Speaker._meta.get_field('description')
         self.assertTrue(field.blank)
     
-    def test_website_can_be_black(self):
+    def test_website_can_be_blank(self):
         field = Speaker._meta.get_field('website')
         self.assertTrue(field.blank)
 
