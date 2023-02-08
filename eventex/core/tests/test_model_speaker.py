@@ -11,6 +11,7 @@ class SpeakerModelTest(TestCase):
             website='http://hbn.link/hopper-site',
             description='Programadora e almirante.'
         )
+    
     def test_create(self):
         self.assertTrue(Speaker.objects.exists())
     

@@ -1,7 +1,7 @@
 from django.utils.html import format_html
 from django.contrib import admin
 
-from eventex.core.models import Contact, Speaker
+from eventex.core.models import Contact, Speaker, Talk
 
 class ContactInline(admin.TabularInline):
     model = Contact
@@ -12,7 +12,7 @@ class ContactInline(admin.TabularInline):
 class SpeakerModelAdmin(admin.ModelAdmin):
     inlines=[ContactInline]
     prepopulated_fields={'slug': ('name',)}
-    list_display = ['name', 'website']
+    list_display = ['name', 'photo_img', 'website']
     
     def website_link(self,obj):
         return format_html('<a href="{0}">{0}</a>',obj.website)
@@ -25,3 +25,5 @@ class SpeakerModelAdmin(admin.ModelAdmin):
     photo_img.short_description = 'foto'
 
 admin.site.register(Speaker, SpeakerModelAdmin)
+
+admin.site.register(Talk)
